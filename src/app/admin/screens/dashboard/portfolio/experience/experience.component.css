@@ -1,0 +1,115 @@
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 1.3rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 13px;
+  width: 2px;
+  background: linear-gradient(var(--accent-color), var(--line-color), var(--accent-soft));
+  background-size: 100% 180%;
+  animation: lineShift 4s linear infinite;
+}
+
+@keyframes lineShift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 0.8rem;
+  position: relative;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 1rem;
+  background: var(--accent-color);
+  box-shadow: 0 0 0 5px var(--chip-bg);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 5px var(--chip-bg);
+  }
+  50% {
+    box-shadow: 0 0 0 9px color-mix(in srgb, var(--accent-soft) 25%, transparent);
+  }
+}
+
+.timeline-card {
+  border: 1px solid var(--line-color);
+  background: var(--surface-card);
+  border-radius: 18px;
+  padding: 36px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  animation: expCardIn 0.8s ease both;
+}
+
+.timeline-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 28px rgba(2, 8, 23, 0.14);
+}
+
+.duration {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-color);
+  text-transform: uppercase;
+}
+
+h3 {
+  margin: 0.35rem 0 0.2rem;
+  color: var(--text-color);
+  font-size: 1.04rem;
+}
+
+h4 {
+  margin: 0;
+  color: var(--muted-text);
+  font-size: 0.88rem;
+}
+
+.summary {
+  margin: 0.65rem 0 0.45rem;
+  color: var(--subtle-text);
+  line-height: 1.65;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--muted-text);
+}
+
+li {
+  margin-bottom: 0.2rem;
+}
+
+@keyframes expCardIn {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

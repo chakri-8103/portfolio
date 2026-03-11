@@ -1,0 +1,23 @@
+<footer class="portfolio-footer">
+  <div class="footer-left">
+    <span class="status-dot"></span>
+    <p>Open to full-time and freelance opportunities</p>
+  </div>
+
+  <div class="footer-meta">
+    <p class="owner">{{ name }}</p>
+    <p class="tagline">Full-Stack Developer | Backend Engineer</p>
+  </div>
+
+  <div class="social-links">
+    <a *ngFor="let social of socials" [href]="social.url" target="_blank" rel="noopener">
+      <i class="bi" [ngClass]="social.icon"></i>
+      <span>{{ social.label }}</span>
+    </a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>Copyright {{ year }} {{ name }}. All rights reserved.</p>
+    <a href="" (click)="jumpTo('hero', $event)">Back to Top</a>
+  </div>
+</footer>

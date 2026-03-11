@@ -1,0 +1,10 @@
+<div class="achievement-row" @achieveIn>
+  <article class="achievement-card" *ngFor="let item of achievements">
+    <div class="icon-wrap">
+      <i class="bi bi-trophy-fill"></i>
+    </div>
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.detail }}</p>
+  </article>
+</div>
+

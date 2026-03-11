@@ -1,0 +1,116 @@
+<div
+  class="portfolio-shell"
+  [class.dark-theme]="darkMode"
+  [style.--scroll-depth]="scrollDepth"
+  [style.--scroll-px]="scrollPx + 'px'"
+  [style.--mouse-x]="mouseX + 'px'"
+  [style.--mouse-y]="mouseY + 'px'"
+  @pageReveal>
+  <div class="fx-grid"></div>
+  <div class="fx-noise"></div>
+  <div class="fx-beam"></div>
+  <div class="side-gallery side-gallery-left">
+    <img src="assets/img/chakrilogo.png" alt="Chakri" />
+    <img src="assets/img/chart.png" alt="Portfolio" />
+  </div>
+
+  <div class="portfolio-content" @sectionCascade>
+    <app-portfolio-navbar
+      [name]="name"
+      [links]="navLinks"
+      [darkMode]="darkMode"
+      (themeToggle)="toggleTheme()"></app-portfolio-navbar>
+
+    <section id="hero" class="portfolio-section full-width-section hero-block fx-reveal fx-zoom">
+      <div class="container-fluid section-fluid">
+        <app-portfolio-hero
+          [name]="name"
+          [role]="role"
+          [company]="company"
+          [intro]="intro"
+          [typedSkills]="typingSkills"
+          [stats]="heroStats"></app-portfolio-hero>
+      </div>
+    </section>
+
+    <section id="about" class="portfolio-section full-width-section about-block fx-reveal fx-left">
+      <div class="container-fluid section-fluid">
+        <div class="section-heading">
+          <p>About Me</p>
+          <h2>Education and professional journey</h2>
+        </div>
+        <app-portfolio-about [story]="story" [education]="education"></app-portfolio-about>
+      </div>
+    </section>
+
+    <section id="skills" class="portfolio-section full-width-section fx-reveal fx-right">
+      <div class="container-fluid section-fluid">
+        <div class="section-heading">
+          <p>Skills</p>
+          <h2>Full-stack capabilities with backend strength</h2>
+        </div>
+        <app-portfolio-skills [groups]="skillGroups"></app-portfolio-skills>
+      </div>
+    </section>
+
+    <section id="projects" class="portfolio-section full-width-section fx-reveal fx-up">
+      <div class="container-fluid section-fluid">
+        <div class="section-heading">
+          <p>Projects</p>
+          <h2>Selected work and technical delivery</h2>
+        </div>
+        <app-portfolio-projects [projects]="projects"></app-portfolio-projects>
+      </div>
+    </section>
+
+    <section id="experience" class="portfolio-section full-width-section fx-reveal fx-down">
+      <div class="container-fluid section-fluid">
+        <div class="section-heading">
+          <p>Experience</p>
+          <h2>Timeline of professional impact</h2>
+        </div>
+        <app-portfolio-experience [experiences]="experiences"></app-portfolio-experience>
+      </div>
+    </section>
+
+    <section id="certifications" class="portfolio-section full-width-section fx-reveal fx-left">
+      <div class="container-fluid section-fluid">
+        <div class="section-heading">
+          <p>Certifications</p>
+          <h2>Validated technical learning</h2>
+        </div>
+        <app-portfolio-certifications [certifications]="certifications"></app-portfolio-certifications>
+      </div>
+    </section>
+
+    <section id="achievements" class="portfolio-section full-width-section fx-reveal fx-right">
+      <div class="container-fluid section-fluid">
+        <div class="section-heading">
+          <p>Achievements</p>
+          <h2>Awards and recognitions</h2>
+        </div>
+        <app-portfolio-achievements [achievements]="achievements"></app-portfolio-achievements>
+      </div>
+    </section>
+
+    <section id="contact" class="portfolio-section full-width-section fx-reveal fx-up">
+      <div class="container-fluid section-fluid">
+        <div class="section-heading">
+          <p>Contact</p>
+          <h2>Let us connect for impactful products</h2>
+        </div>
+        <app-portfolio-contact
+          [email]="email"
+          [linkedin]="linkedin"
+          [github]="github"
+          [location]="location"></app-portfolio-contact>
+      </div>
+    </section>
+
+    <section id="footer" class="portfolio-section full-width-section footer-space fx-reveal fx-zoom">
+      <div class="container-fluid section-fluid footer-center">
+        <app-portfolio-footer [name]="name" [quickLinks]="navLinks" [socials]="socialLinks"></app-portfolio-footer>
+      </div>
+    </section>
+  </div>
+</div>

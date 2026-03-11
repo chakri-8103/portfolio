@@ -1,0 +1,8 @@
+<div class="cert-grid" @certsIn>
+  <article class="cert-card" *ngFor="let cert of certifications">
+    <p class="badge-label">{{ cert.badge }}</p>
+    <h3>{{ cert.title }}</h3>
+    <p>{{ cert.issuer }}</p>
+  </article>
+</div>
+

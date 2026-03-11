@@ -1,0 +1,28 @@
+<nav class="portfolio-nav" @navIn>
+  <div class="brand-block">
+    <a class="brand-text" href="" (click)="navigate('hero', $event)">
+      {{ name }}
+      <span class="brand-dot">.</span>
+    </a>
+    <button class="mobile-toggle d-lg-none" type="button" (click)="toggleMobileMenu()">
+      <i class="bi" [ngClass]="mobileMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
+    </button>
+  </div>
+
+  <div class="nav-links" [class.mobile-open]="mobileMenuOpen">
+    <a
+      *ngFor="let link of links"
+      class="nav-link"
+      href=""
+      [class.active]="activeFragment === link.fragment"
+      (click)="navigate(link.fragment, $event)">
+      {{ link.label }}
+    </a>
+
+    <button type="button" class="theme-btn" (click)="themeToggle.emit()">
+      <i class="bi" [ngClass]="darkMode ? 'bi-sun-fill' : 'bi-moon-stars-fill'"></i>
+      <span>{{ darkMode ? 'Light' : 'Dark' }}</span>
+    </button>
+  </div>
+</nav>
+

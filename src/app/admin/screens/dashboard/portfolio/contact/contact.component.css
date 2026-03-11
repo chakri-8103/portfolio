@@ -1,0 +1,128 @@
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.35rem;
+}
+
+.contact-card,
+.form-card {
+  border: 1px solid var(--line-color);
+  background: var(--surface-card);
+  border-radius: 18px;
+  box-shadow: var(--card-shadow);
+  padding: 36px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: contactIn 0.75s ease both;
+}
+
+.contact-card:hover,
+.form-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px rgba(2, 8, 23, 0.14);
+}
+
+.contact-card h3 {
+  margin: 0 0 20px;
+  color: var(--text-color);
+}
+
+.contact-card p {
+  margin: 0;
+  color: var(--subtle-text);
+  line-height: 1.65;
+}
+
+.contact-links {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 0.72rem;
+}
+
+.contact-links a,
+.contact-links span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted-text);
+  text-decoration: none;
+  width: fit-content;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.28rem 0.62rem;
+  transition: all 0.25s ease;
+}
+
+.contact-links a:hover {
+  color: var(--accent-color);
+  border-color: color-mix(in srgb, var(--accent-color) 40%, var(--line-color));
+  background: var(--chip-bg);
+}
+
+.form-card {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.form-card h4 {
+  margin: 0 0 18px;
+  color: var(--text-color);
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line-color);
+  border-radius: 12px;
+  background: var(--chip-bg);
+  color: var(--text-color);
+  padding: 0.6rem 0.75rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-soft) 25%, transparent);
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.6rem 0.95rem;
+  background: var(--accent-color);
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+}
+
+@keyframes contactIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-msg {
+  margin: 0;
+  color: #0a8f4d;
+  font-size: 0.86rem;
+}
+
+@media (max-width: 992px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}

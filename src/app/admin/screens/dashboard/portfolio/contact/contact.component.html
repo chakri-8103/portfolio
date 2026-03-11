@@ -1,0 +1,45 @@
+<div class="contact-layout" @contactIn>
+  <article class="contact-card">
+    <h3>Let us build something impactful.</h3>
+    <p>
+      I enjoy building backend-heavy products with reliable APIs, secure systems, and polished Angular frontend
+      experiences.
+    </p>
+
+    <div class="contact-links">
+      <a [href]="'mailto:' + email"><i class="bi bi-envelope-fill"></i>{{ email }}</a>
+      <a [href]="linkedin" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i>LinkedIn</a>
+      <a [href]="github" target="_blank" rel="noopener"><i class="bi bi-github"></i>GitHub</a>
+      <span><i class="bi bi-geo-alt-fill"></i>{{ location }}</span>
+    </div>
+  </article>
+
+  <form class="form-card" #contactForm="ngForm" (ngSubmit)="submitForm()">
+    <h4>Contact Form</h4>
+    <input
+      type="text"
+      placeholder="Your Name"
+      name="name"
+      required
+      [(ngModel)]="formData.name"
+      #nameModel="ngModel" />
+    <input
+      type="email"
+      placeholder="Your Email"
+      name="email"
+      required
+      [(ngModel)]="formData.email"
+      #emailModel="ngModel" />
+    <textarea
+      rows="4"
+      placeholder="Message"
+      name="message"
+      required
+      [(ngModel)]="formData.message"
+      #messageModel="ngModel"></textarea>
+
+    <button type="submit" [disabled]="contactForm.invalid">Send Message</button>
+    <p class="success-msg" *ngIf="submitted">Message captured successfully. I will connect soon.</p>
+  </form>
+</div>
+

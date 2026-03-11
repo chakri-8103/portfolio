@@ -1,0 +1,38 @@
+<div class="hero-grid" @heroReveal>
+  <div class="hero-content">
+    <p class="eyebrow">Full-Stack Engineer Portfolio</p>
+    <h1>{{ name }}</h1>
+    <h2>{{ role }}</h2>
+    <p class="intro">{{ intro }}</p>
+
+    <p class="typing-line">
+      Building with
+      <span class="typed-word">{{ typedText }}</span>
+      <span class="cursor">|</span>
+    </p>
+
+    <div class="hero-actions">
+      <a href="" class="btn-main" (click)="scrollTo('projects', $event)">View Projects</a>
+      <a href="" class="btn-ghost" (click)="scrollTo('contact', $event)">Contact Me</a>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <div class="photo-wrap">
+      <div class="photo-ring"></div>
+      <img [src]="profileImage" [alt]="name" (error)="setFallback($event)" />
+    </div>
+
+    <div class="panel-title">
+      <span>Current Role</span>
+      <h3>{{ company }}</h3>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card" *ngFor="let stat of stats">
+        <p class="label">{{ stat.label }}</p>
+        <p class="value">{{ stat.value }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="skill-layout" @cardStagger>
+  <article class="skill-group" *ngFor="let group of groups">
+    <h3>{{ group.category }}</h3>
+
+    <div class="skill-item" *ngFor="let skill of group.skills">
+      <div class="skill-head">
+        <p>
+          <i class="bi" [ngClass]="skill.icon"></i>
+          <span>{{ skill.name }}</span>
+        </p>
+        <strong>{{ skill.level }}%</strong>
+      </div>
+
+      <div class="progress-track">
+        <span class="progress-fill" [style.width]="animateBars ? (skill.level + '%') : '0%'"></span>
+      </div>
+    </div>
+  </article>
+</div>
+

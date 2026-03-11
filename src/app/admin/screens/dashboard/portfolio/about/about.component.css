@@ -1,0 +1,99 @@
+.about-wrap {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.about-story,
+.edu-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line-color);
+  background: var(--surface-card);
+  border-radius: 18px;
+  padding: 36px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: aboutCardIn 0.65s ease both;
+}
+
+.about-story:hover,
+.edu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(2, 8, 23, 0.14);
+}
+
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+  transition: left 0.8s ease;
+}
+
+.edu-card:hover::before {
+  left: 140%;
+}
+
+@keyframes aboutCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-story h3 {
+  margin: 0 0 20px;
+  color: var(--text-color);
+}
+
+.about-story p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--subtle-text);
+}
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.year {
+  margin: 0;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
+.edu-card h4 {
+  margin: 0.35rem 0 0.3rem;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.school,
+.score {
+  margin: 0;
+  color: var(--muted-text);
+  font-size: 0.9rem;
+}
+
+.score {
+  margin-top: 0.35rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+}

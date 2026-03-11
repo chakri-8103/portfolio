@@ -1,0 +1,16 @@
+<div class="about-wrap" @sectionIn>
+  <article class="about-story">
+    <h3>Professional Story</h3>
+    <p>{{ story }}</p>
+  </article>
+
+  <div class="edu-grid">
+    <article class="edu-card" *ngFor="let item of education">
+      <p class="year">{{ item.year }}</p>
+      <h4>{{ item.degree }}</h4>
+      <p class="school">{{ item.institution }}</p>
+      <p class="score">{{ item.score }}</p>
+    </article>
+  </div>
+</div>
+
