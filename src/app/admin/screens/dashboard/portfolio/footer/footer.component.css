@@ -17,6 +17,7 @@
   box-shadow: var(--card-shadow);
   animation: footerLift 4.6s ease-in-out infinite;
   justify-items: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .footer-left {
@@ -179,9 +180,20 @@
   .portfolio-footer {
     border-radius: 18px;
     padding: 24px;
+    width: 100%;
   }
 
   .footer-left {
     font-size: 0.78rem;
+  }
+
+  .social-links a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.65rem;
   }
 }

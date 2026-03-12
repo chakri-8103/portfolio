@@ -65,6 +65,7 @@
   margin: 0 auto;
   padding: 1.35rem 1.25rem 4.2rem;
   isolation: isolate;
+  transform-style: preserve-3d;
 }
 
 .portfolio-content::before {
@@ -81,7 +82,11 @@
 
 .fx-grid,
 .fx-noise,
-.fx-beam {
+.fx-beam,
+.fx-orb,
+.fx-rings,
+.fx-tunnel,
+.fx-particles {
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -118,12 +123,224 @@
   animation: beamShift 8.5s ease-in-out infinite alternate;
 }
 
+.fx-orb {
+  inset: auto;
+  width: clamp(220px, 28vw, 420px);
+  height: clamp(220px, 28vw, 420px);
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0.48;
+  mix-blend-mode: screen;
+  transform-style: preserve-3d;
+}
+
+.fx-orb-one {
+  top: 8%;
+  right: -6%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.85), transparent 22%),
+    radial-gradient(circle at 45% 40%, rgba(34, 211, 238, 0.7), rgba(14, 116, 144, 0.1) 58%, transparent 72%);
+  animation: orbFloatOne 15s ease-in-out infinite;
+}
+
+.fx-orb-two {
+  bottom: 10%;
+  left: -8%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.78), transparent 18%),
+    radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.56), rgba(13, 148, 136, 0.08) 56%, transparent 72%);
+  animation: orbFloatTwo 18s ease-in-out infinite;
+}
+
+.fx-orb-three {
+  top: 40%;
+  left: 45%;
+  width: clamp(140px, 16vw, 230px);
+  height: clamp(140px, 16vw, 230px);
+  background:
+    radial-gradient(circle at 36% 34%, rgba(255, 255, 255, 0.65), transparent 20%),
+    radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.32), rgba(244, 114, 182, 0.08) 60%, transparent 78%);
+  animation: orbFloatThree 12s ease-in-out infinite;
+}
+
+.fx-rings {
+  background:
+    radial-gradient(circle at center, transparent 0 34%, rgba(34, 211, 238, 0.12) 34.5%, transparent 36%),
+    radial-gradient(circle at center, transparent 0 46%, rgba(45, 212, 191, 0.1) 46.5%, transparent 48%),
+    radial-gradient(circle at center, transparent 0 58%, rgba(14, 165, 233, 0.08) 58.5%, transparent 60%);
+  mask-image: radial-gradient(circle at center, black 0 38%, transparent 76%);
+  opacity: 0.6;
+  transform:
+    perspective(1200px)
+    rotateX(calc(58deg + (var(--mouse-y) * -0.015deg)))
+    rotateY(calc(var(--mouse-x) * 0.02deg))
+    translateY(calc(var(--scroll-px) * -0.03));
+  transform-origin: center;
+  animation: ringsSpin 24s linear infinite;
+}
+
+.fx-tunnel {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 30px,
+      rgba(34, 211, 238, 0.045) 30px 31px,
+      transparent 31px 74px
+    ),
+    repeating-linear-gradient(
+      transparent 0 34px,
+      rgba(45, 212, 191, 0.045) 34px 35px,
+      transparent 35px 78px
+    );
+  opacity: 0.22;
+  transform:
+    perspective(1400px)
+    rotateX(74deg)
+    translateY(26vh)
+    scale(1.25)
+    translateX(calc(var(--mouse-x) * 0.015));
+  transform-origin: center bottom;
+  mask-image: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.92) 32%, transparent 100%);
+  animation: tunnelShift 12s linear infinite;
+}
+
+.fx-particles span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.85), rgba(34, 211, 238, 0.22) 60%, transparent 72%);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.34);
+  animation: particleRise linear infinite;
+}
+
+.fx-particles span:nth-child(1) {
+  left: 10%;
+  bottom: -4%;
+  animation-duration: 13s;
+  animation-delay: -2s;
+}
+
+.fx-particles span:nth-child(2) {
+  left: 24%;
+  bottom: 14%;
+  width: 6px;
+  height: 6px;
+  animation-duration: 10s;
+  animation-delay: -5s;
+}
+
+.fx-particles span:nth-child(3) {
+  left: 42%;
+  bottom: -6%;
+  width: 12px;
+  height: 12px;
+  animation-duration: 15s;
+  animation-delay: -1s;
+}
+
+.fx-particles span:nth-child(4) {
+  left: 58%;
+  bottom: 8%;
+  width: 8px;
+  height: 8px;
+  animation-duration: 11s;
+  animation-delay: -7s;
+}
+
+.fx-particles span:nth-child(5) {
+  left: 72%;
+  bottom: -3%;
+  animation-duration: 14s;
+  animation-delay: -4s;
+}
+
+.fx-particles span:nth-child(6) {
+  left: 84%;
+  bottom: 18%;
+  width: 7px;
+  height: 7px;
+  animation-duration: 9s;
+  animation-delay: -3s;
+}
+
+.fx-particles span:nth-child(7) {
+  left: 92%;
+  bottom: -5%;
+  width: 11px;
+  height: 11px;
+  animation-duration: 16s;
+  animation-delay: -8s;
+}
+
 @keyframes beamShift {
   from {
     opacity: 0.38;
   }
   to {
     opacity: 0.7;
+  }
+}
+
+@keyframes orbFloatOne {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(calc(var(--mouse-x) * 0.06), 30px, 0) scale(1.08) rotate(12deg);
+  }
+}
+
+@keyframes orbFloatTwo {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(calc(var(--mouse-x) * -0.05), -36px, 0) scale(1.12);
+  }
+}
+
+@keyframes orbFloatThree {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(calc(var(--mouse-y) * -0.05), -24px, 0) scale(1.16);
+  }
+}
+
+@keyframes ringsSpin {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes tunnelShift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 90px 0, 0 78px;
+  }
+}
+
+@keyframes particleRise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.75);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(-24px, -110vh, 0) scale(1.2);
+    opacity: 0;
   }
 }
 
@@ -169,6 +386,10 @@
   padding-right: clamp(1.2rem, 3.8vw, 3.25rem);
 }
 
+.section-fluid > * {
+  width: 100%;
+}
+
 .footer-center {
   display: grid;
   place-items: center;
@@ -186,10 +407,11 @@
 
 .portfolio-section > * {
   transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.35s ease;
+  transform-style: preserve-3d;
 }
 
 .portfolio-section > *:hover {
-  transform: translateY(-5px);
+  transform: none;
 }
 
 .portfolio-section:nth-of-type(odd) > * {
@@ -332,6 +554,28 @@
 
   .side-gallery {
     display: none;
+  }
+
+  .fx-rings,
+  .fx-tunnel {
+    opacity: 0.16;
+  }
+
+  .fx-orb {
+    opacity: 0.28;
+  }
+  
+  .section-heading {
+    text-align: center;
+  }
+
+  .section-heading h2 {
+    padding-right: 0;
+  }
+
+  .section-heading h2::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
 }

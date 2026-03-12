@@ -1,15 +1,30 @@
 <div class="project-grid" @projectIn>
   <article class="project-card" *ngFor="let project of projects">
-    <h3>{{ project.title }}</h3>
-    <p>{{ project.description }}</p>
-
-    <div class="stack-row">
-      <span *ngFor="let tech of project.stack">{{ tech }}</span>
+    <div class="project-media">
+      <img [src]="getProjectImage(project)" [alt]="project.title" />
+      <div class="media-overlay"></div>
+      <div class="project-topline">
+        <span class="ownership-pill">{{ getOwnership(project) }}</span>
+        <span class="slide-pill">Project Slide</span>
+      </div>
+      <div class="project-spotlight">
+        <span>Featured Build</span>
+        <strong>{{ project.title }}</strong>
+      </div>
     </div>
 
-    <div class="card-actions">
-      <a [href]="project.github" target="_blank" rel="noopener">GitHub</a>
-      <a [href]="project.live" target="_blank" rel="noopener">Live Demo</a>
+    <div class="project-body">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.description }}</p>
+
+      <div class="stack-row">
+        <span *ngFor="let tech of project.stack">{{ tech }}</span>
+      </div>
+
+      <div class="card-actions">
+        <a [href]="project.github" target="_blank" rel="noopener">GitHub</a>
+        <a [href]="project.live" target="_blank" rel="noopener">Live Demo</a>
+      </div>
     </div>
   </article>
 </div>

@@ -33,5 +33,31 @@ export interface ProjectItem {
 })
 export class PortfolioProjectsComponent {
   @Input() projects: ProjectItem[] = [];
+
+  private readonly projectMedia: Record<string, string> = {
+    'Lead Management System': 'assets/img/chart.png',
+    'File Integrated Management System': 'assets/img/banner.jpg',
+    'Secure Exam Portal': 'assets/img/studybanner.png',
+    'Voting System for College Projects': 'assets/img/banner222.jpg',
+    'Network Intrusion Detection System': 'assets/img/aws.jpg',
+    'Notification Sender': 'assets/img/analysis_banner.png'
+  };
+
+  private readonly ownershipByTitle: Record<string, 'Solo Build' | 'Team Project'> = {
+    'Lead Management System': 'Team Project',
+    'File Integrated Management System': 'Team Project',
+    'Secure Exam Portal': 'Solo Build',
+    'Voting System for College Projects': 'Team Project',
+    'Network Intrusion Detection System': 'Solo Build',
+    'Notification Sender': 'Solo Build'
+  };
+
+  getProjectImage(project: ProjectItem): string {
+    return this.projectMedia[project.title] ?? 'assets/img/card.jpg';
+  }
+
+  getOwnership(project: ProjectItem): 'Solo Build' | 'Team Project' {
+    return this.ownershipByTitle[project.title] ?? 'Solo Build';
+  }
 }
 

@@ -64,10 +64,10 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   readonly heroStats: HeroStat[] = [
-    { label: 'Projects', value: '6+ Delivered' },
+    { label: 'Projects', value: '6+ Projects' },
     { label: 'Awards', value: '3 Major Wins' },
-    { label: 'Primary Focus', value: 'Backend APIs' },
-    { label: 'Deployment', value: 'Railway / Vercel' }
+    { label: 'Primary Focus', value: 'Full-Stack Development' },
+    { label: 'Deployment', value: 'Vercel' }
   ];
 
   readonly education: EducationItem[] = [

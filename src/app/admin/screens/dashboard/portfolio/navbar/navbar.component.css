@@ -38,6 +38,8 @@
 }
 
 .brand-text {
+  display: inline-flex;
+  align-items: center;
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -67,6 +69,8 @@
   display: flex;
   align-items: center;
   gap: 0.7rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .nav-link {
@@ -78,7 +82,8 @@
   font-weight: 600;
   text-decoration: none;
   color: var(--muted-text);
-  transition: all 0.25s ease;
+  border: 1px solid transparent;
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
 .nav-link::after {
@@ -98,6 +103,8 @@
 .nav-link.active {
   color: var(--text-color);
   background: var(--chip-bg);
+  border-color: color-mix(in srgb, var(--accent-color) 35%, var(--line-color));
+  transform: translateY(-1px);
 }
 
 .nav-link:hover::after,
@@ -108,6 +115,7 @@
 .theme-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   border: 1px solid var(--line-color);
   background: transparent;
@@ -128,18 +136,27 @@
 @media (max-width: 991px) {
   .portfolio-nav {
     display: block;
+    padding: 0.95rem 1rem;
   }
 
   .nav-links {
     display: none;
     margin-top: 0.8rem;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 0.55rem;
   }
 
   .nav-links.mobile-open {
     display: flex;
     animation: slideDown 0.28s ease;
+  }
+
+  .nav-link,
+  .theme-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 }
 
