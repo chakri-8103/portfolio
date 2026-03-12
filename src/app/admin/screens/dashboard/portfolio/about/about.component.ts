@@ -28,4 +28,3 @@ export class PortfolioAboutComponent {
   @Input() story = '';
   @Input() education: EducationItem[] = [];
 }
-
