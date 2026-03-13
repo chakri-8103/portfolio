@@ -37,6 +37,7 @@ import { SkillGroup } from './portfolio/skills/skills.component';
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   darkMode = false;
+  isMobileView = false;
   scrollDepth = 0;
   scrollPx = 0;
   mouseX = 0;
@@ -223,6 +224,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private readonly route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.syncViewportMode();
     const savedTheme = localStorage.getItem('portfolio-theme');
     if (!savedTheme) {
       this.darkMode = true;
@@ -233,14 +235,76 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.fragment.subscribe(fragment => {
       if (fragment) {
         setTimeout(() => {
-          document.getElementById(fragment)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document
+            .getElementById(fragment)
+            ?.scrollIntoView({ behavior: this.isMobileView ? 'auto' : 'smooth', block: 'start' });
         }, 100);
       }
     });
   }
 
   ngAfterViewInit(): void {
+    this.setupSectionReveal();
+    this.updateScrollState();
+  }
+
+  ngOnDestroy(): void {
+    this.disconnectSectionObserver();
+  }
+
+  toggleTheme(): void {
+    this.darkMode = !this.darkMode;
+    localStorage.setItem('portfolio-theme', this.darkMode ? 'dark' : 'light');
+  }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    const wasMobileView = this.isMobileView;
+    this.syncViewportMode();
+
+    if (wasMobileView !== this.isMobileView) {
+      this.setupSectionReveal();
+      this.updateScrollState();
+    }
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.updateScrollState();
+  }
+
+  @HostListener('window:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent): void {
+    if (this.isMobileView) {
+      return;
+    }
+
+    const x = event.clientX - window.innerWidth / 2;
+    const y = event.clientY - window.innerHeight / 2;
+    this.mouseX = Math.max(Math.min(x, 180), -180);
+    this.mouseY = Math.max(Math.min(y, 180), -180);
+  }
+
+  private syncViewportMode(): void {
+    this.isMobileView = window.innerWidth <= 767;
+
+    if (this.isMobileView) {
+      this.scrollDepth = 0;
+      this.scrollPx = 0;
+      this.mouseX = 0;
+      this.mouseY = 0;
+    }
+  }
+
+  private setupSectionReveal(): void {
+    this.disconnectSectionObserver();
     const nodes = Array.from(document.querySelectorAll('.fx-reveal'));
+
+    if (this.isMobileView) {
+      nodes.forEach(node => node.classList.add('in-view'));
+      return;
+    }
+
     this.sectionObserver = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -255,33 +319,20 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     );
 
     nodes.forEach(node => this.sectionObserver?.observe(node));
-    this.updateScrollState();
   }
 
-  ngOnDestroy(): void {
+  private disconnectSectionObserver(): void {
     this.sectionObserver?.disconnect();
     this.sectionObserver = null;
   }
 
-  toggleTheme(): void {
-    this.darkMode = !this.darkMode;
-    localStorage.setItem('portfolio-theme', this.darkMode ? 'dark' : 'light');
-  }
-
-  @HostListener('window:scroll')
-  onWindowScroll(): void {
-    this.updateScrollState();
-  }
-
-  @HostListener('window:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent): void {
-    const x = event.clientX - window.innerWidth / 2;
-    const y = event.clientY - window.innerHeight / 2;
-    this.mouseX = Math.max(Math.min(x, 180), -180);
-    this.mouseY = Math.max(Math.min(y, 180), -180);
-  }
-
   private updateScrollState(): void {
+    if (this.isMobileView) {
+      this.scrollDepth = 0;
+      this.scrollPx = 0;
+      return;
+    }
+
     const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
     const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
     this.scrollPx = scrollTop;
