@@ -24,9 +24,9 @@ export interface HeroStat {
 })
 export class PortfolioHeroComponent implements OnInit, OnDestroy {
   @Input() name = 'Janapaneedi Chakradhar';
-  @Input() role = 'Full-Stack Developer & Backend Developer';
+  @Input() role = 'Full-Stack Developer | Backend Engineer';
   @Input() intro = '';
-  @Input() company = 'Criativo Company, Kakinada';
+  @Input() company = 'Criativo Software Company, Kakinada';
   @Input() typedSkills: string[] = [];
   @Input() stats: HeroStat[] = [];
   @Input() profileImage = 'assets/img/chakrilogo.png';
